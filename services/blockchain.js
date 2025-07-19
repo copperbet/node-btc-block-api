@@ -20,7 +20,7 @@ export const getChainInfo = expressAsyncHandler(async (req, res, next) => {
     params: [],
   };
 
-  const info = await getClient().post('/r', payload);
+  const info = await getClient().post('/', payload);
 
   return res.status(200).json({
     success: true,
