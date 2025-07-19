@@ -1,20 +1,24 @@
 import axios from 'axios';
+import { envConfig } from './envConf.js';
 
-export const getClient = (host, username, password) => {
-  if (host == undefined) {
-    throw new Error('host is undefined');
+export const getClient = () => {
+  // validate env variables
+  if (
+    !envConfig.SELF_HOSTED_BTC_HOST ||
+    !envConfig.SELF_HOSTED_BTC_USERNAME ||
+    !envConfig.SELF_HOSTED_BTC_PASSWORD
+  ) {
+    throw new Error(
+      'Missing Bitcoin node configuration environment variables.'
+    );
   }
 
-  let authToken = undefined;
-
-  if (username != undefined && password != undefined) {
-    authToken = `Basic ${Buffer.from(`${username}:${password}`).toString(
-      'base64'
-    )}`;
-  }
+  const authToken = `Basic ${Buffer.from(
+    `${envConfig.SELF_HOSTED_BTC_USERNAME}:${envConfig.SELF_HOSTED_BTC_PASSWORD}`
+  ).toString('base64')}`;
 
   return axios.create({
-    baseURL: host,
+    baseURL: envConfig.SELF_HOSTED_BTC_HOST,
     headers: {
       Authorization: authToken,
       'Content-Type': 'application/json',

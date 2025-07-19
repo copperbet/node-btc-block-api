@@ -1,4 +1,5 @@
-import asyncHandler from '../async/async.js';
+import { getClient } from '../config/btcNodeConfig.js';
+import expressAsyncHandler from 'express-async-handler';
 
 /**
  * @swagger
@@ -11,8 +12,18 @@ import asyncHandler from '../async/async.js';
  *       200:
  *         description: Bitcoin chain info
  */
-export const getChainInfo = asyncHandler(async (req, res, next) => {
+export const getChainInfo = expressAsyncHandler(async (req, res, next) => {
+  const payload = {
+    jsonrpc: '1.0',
+    id: 'curltest',
+    method: 'getblockchaininfo',
+    params: [],
+  };
+
+  const info = await getClient().post('/r', payload);
+
   return res.status(200).json({
     success: true,
+    data: info.data,
   });
 });
