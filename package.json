@@ -1,6 +1,6 @@
 {
   "name": "btc-api-service",
-  "version": "0.2.1",
+  "version": "0.0.1",
   "description": "",
   "main": "server.js",
   "type": "module",
