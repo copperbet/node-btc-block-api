@@ -16,7 +16,7 @@ const config = {
   openapi: '3.0.0',
   info: {
     title: 'Bitcoin Block Explorer API',
-    version: '0.1.0',
+    version: '0.0.2',
     description,
   },
   servers: [

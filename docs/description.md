@@ -12,7 +12,7 @@ This is an open-source REST API to explore Bitcoin blockchain data using a **pru
 ### 📘 Field Naming Conventions
 
 - All **JSON responses** use `snake_case`
-- All \*\*request parameters, query strings, and request bodies\*\* use `camelCase`
+- All **request parameters, query strings, and request bodies** use `camelCase`
 
 ---
 
